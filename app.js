@@ -13,6 +13,6 @@ router.use('', routes.routes());
 app.use(router.routes())
 app.use(router.allowedMethods());
 
-const port = process.env.PORT || '3100';
+const port = process.env.PORT || '3102';
 app.listen(port);
 console.log('Server listening on ' + port);
