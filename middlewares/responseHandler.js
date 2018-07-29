@@ -26,7 +26,7 @@ async function filterBody (ctx) {
 }
 
 // 检测接口路径是否包含/api字段，有的话再过滤返回数据
-module.exports = async (ctx, next) => {
+export default async (ctx, next) => {
   const reg = new RegExp('^/api')
   await next()
   if (reg.test(ctx.originalUrl)) {
