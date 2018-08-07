@@ -1,9 +1,9 @@
 
-import { DBCONF }from '../config';
+import { dbConf } from '../config';
 
 import mongoose from 'mongoose';
 
-const DB_URL = 'mongodb://mingru:mingrutough@111.230.206.242/mBlogDev'; // 我的用户名密码
+const DB_URL = `mongodb://${dbConf.db.userName}:${dbConf.db.passWord}@${dbConf.ip}/${dbConf.db.name}`; 
 mongoose.connect(DB_URL);
 
 const db = mongoose.connection;
@@ -28,3 +28,6 @@ db.on('error',function (err) {
 db.on('disconnected', function () {    
     console.log('Mongoose connection disconnected');  
 });    
+
+
+export default db;

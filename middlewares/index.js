@@ -1,8 +1,5 @@
+// 集中管理所有的自定义中间件并导出
 import responseHandler from './responseHandler';
 
-// 管理项目中所有的中间件
-const middleWares = {
-  responseHandler,
-};
 
-export default middleWares;
+export { responseHandler };
