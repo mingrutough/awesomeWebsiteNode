@@ -7,6 +7,8 @@ import db from '../index';
 const todoSchema = new mongoose.Schema({
   text: String,
   status: Number,
+  priority: String,
+  progress: Number,
   createTime: Date,
   updateTime: Date,
 });
