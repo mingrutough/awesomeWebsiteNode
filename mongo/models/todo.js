@@ -1,10 +1,9 @@
 
-import mongoose from 'mongoose';
+import db, { Schema } from '../index';
 
-import db from '../index';
 
 // status 为0表示未完成，为1表示已完成
-const todoSchema = new mongoose.Schema({
+const todoSchema = new Schema({
   text: String,
   status: Number,
   priority: String,

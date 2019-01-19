@@ -4,6 +4,7 @@ import Koa from 'koa';
 import path from 'path';
 import bodyParser from 'koa-bodyparser'; 
 import session from 'koa-session';
+import cors from 'koa2-cors'; // 配置项目使之支持跨域访问
 import koaStatic from 'koa-static'; // 配置项目静态资源目录
 import router from './routes'; // 项目路由统一存放处
 import mongo from './mongo'; // 项目mongodb数据库相关配置
@@ -20,6 +21,8 @@ app.use(responseHandler);
 app.use(koaStatic(
   path.join(__dirname, staticPath) // 得到项目静态资源目录的绝对路径
 ));
+// 跨域访问
+app.use(cors());
 // 用于解析http请求体中的数据
 app.use(bodyParser());
 app.use(router.routes());

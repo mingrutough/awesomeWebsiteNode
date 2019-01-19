@@ -25,7 +25,8 @@
 }
 
 const  responseHandler = async (ctx, next) => {
-  const reg = new RegExp('^/api')
+  const reg = new RegExp('^/api');
+  ctx.data = {};
   await next()
   if (reg.test(ctx.originalUrl)) {
     filterBody(ctx)

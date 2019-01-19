@@ -3,6 +3,8 @@ import { dbConf } from '../config';
 
 import mongoose from 'mongoose';
 
+const Schema = mongoose.Schema;
+
 const DB_URL = `mongodb://${dbConf.db.userName}:${dbConf.db.passWord}@${dbConf.ip}/${dbConf.db.name}`; 
 mongoose.connect(DB_URL);
 
@@ -29,5 +31,5 @@ db.on('disconnected', function () {
     console.log('Mongoose connection disconnected');  
 });    
 
-
+export { Schema };
 export default db;
