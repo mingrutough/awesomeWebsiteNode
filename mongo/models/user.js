@@ -6,7 +6,7 @@ import db, { Schema } from '../index';
  * ex: userSchema.methods.fn = fn; (注意方法的定义必须在生成Model之前)
  *
  * 可以在userSchema的 statics属性上定义方法，之后在userModel上而非model的实例上可以直接访问该方法。
- * ex: userSchema.statics.fn = fn;
+ * ex: userSchema.static.fn = fn;
  *
  * Mongoose还有一个很牛逼的特性就是  virtual property 。该属性是直接设置在Schema上的，但是，需要注意的是，VR并不会真正的存放在db中，它只是一个提取数据的方法。
  * ex:
@@ -119,8 +119,13 @@ UserSchema
 			})
 		},
 		message: '这个呢称已经被使用!',
-	})
+  })
+  // 鉴别用户
+UserSchema.static('userAuth', function (params) {
+  const { phoneNumber, passWord } = params;   
+  return this.findOne({ phoneNumber, passWord });
 
+});
 const userModel = db.model('user', UserSchema);
 
 export default userModel;

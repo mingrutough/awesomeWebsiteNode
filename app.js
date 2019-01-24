@@ -14,6 +14,7 @@ const app = new Koa();
 const staticPath = './static';
 
 // session配置
+app.keys = ['mingrutough'];
 app.use(session(sessionConf, app));
 // 对所有的api返回做统一处理
 app.use(responseHandler);
@@ -21,8 +22,12 @@ app.use(responseHandler);
 app.use(koaStatic(
   path.join(__dirname, staticPath) // 得到项目静态资源目录的绝对路径
 ));
-// 跨域访问
-app.use(cors());
+
+// 跨域访问注意默认跨域是不支持设置cookie的，需要前端withCredentials: true，后端credentials:true
+app.use(cors({
+  origin: 'http://localhost:3018',
+  credentials: true,
+}));
 // 用于解析http请求体中的数据
 app.use(bodyParser());
 app.use(router.routes());

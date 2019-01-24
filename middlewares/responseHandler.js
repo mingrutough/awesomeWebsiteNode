@@ -7,7 +7,7 @@
     if (ctx.data.error) {
       ctx.body = {
         callStatus: 'FAILED',
-        data: ctx.data.error
+        msg: String(ctx.data.error)
       }
     } else {
       ctx.body = {
